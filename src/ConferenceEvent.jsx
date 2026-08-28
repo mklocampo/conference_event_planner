@@ -8,6 +8,7 @@ import { incrementAvQuantity, decrementAvQuantity } from "./avSlice";
 import { toggleMealSelection } from "./mealsSlice";
 
 const ConferenceEvent = () => {
+
     const [showItems, setShowItems] = useState(false);
     const [numberOfPeople, setNumberOfPeople] = useState(1);
     const venueItems = useSelector((state) => state.venue);
@@ -28,16 +29,15 @@ const ConferenceEvent = () => {
         }
         dispatch(incrementQuantity(index));
     };
-
     const handleRemoveFromCart = (index) => {
         if (venueItems[index].quantity > 0) {
             dispatch(decrementQuantity(index));
         }
     };
+
     const handleIncrementAvQuantity = (index) => {
         dispatch(incrementAvQuantity(index));
     };
-
     const handleDecrementAvQuantity = (index) => {
         dispatch(decrementAvQuantity(index));
     };
@@ -57,26 +57,26 @@ const ConferenceEvent = () => {
     const getItemsFromTotalCost = () => {
         const items = [];
         venueItems.forEach((item) => {
-          if (item.quantity > 0) {
-            items.push({ ...item, type: "venue" });
-          }
+            if (item.quantity > 0) {
+                items.push({ ...item, type: "venue" });
+            }
         });
         avItems.forEach((item) => {
-          if (
-            item.quantity > 0 &&
-            !items.some((i) => i.name === item.name && i.type === "av")
-          ) {
-            items.push({ ...item, type: "av" });
-          }
+            if (
+                item.quantity > 0 &&
+                !items.some((i) => i.name === item.name && i.type === "av")
+            ) {
+                items.push({ ...item, type: "av" });
+            }
         });
         mealsItems.forEach((item) => {
-          if (item.selected) {
-            const itemForDisplay = { ...item, type: "meals" };
-            if (item.numberOfPeople) {
-              itemForDisplay.numberOfPeople = numberOfPeople;
+            if (item.selected) {
+                const itemForDisplay = { ...item, type: "meals" };
+                if (item.numberOfPeople) {
+                    itemForDisplay.numberOfPeople = numberOfPeople;
+                }
+                items.push(itemForDisplay);
             }
-            items.push(itemForDisplay);
-          }
         });
         return items;
       };
@@ -134,7 +134,7 @@ const ConferenceEvent = () => {
                 if (item.selected) {
                   totalCost += item.cost * numberOfPeople;
                 }
-              });
+            });
         }
     return totalCost;
     };
