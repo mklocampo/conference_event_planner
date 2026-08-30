@@ -30,7 +30,7 @@ function App() {
                 </div>
             </header>
 
-            <div className={`event-list-container ${showVenue ? 'visible' : ''}`}>
+            <div className={`event-list-container ${showVenue ? 'visible' : 'hidden'}`}>
                 <ConferenceEvent />
             </div>
         </>
