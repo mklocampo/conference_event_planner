@@ -118,8 +118,12 @@
   backdrop-filter: blur(5px);
 }
 
-.event-list-container.visible {
+.visible {
   top: 0;
+  display: block !important;
+}
+.hidden {
+  display: none !important;
 }
 
 .budget_heading {
